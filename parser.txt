@@ -1,0 +1,50 @@
+WS:
+/( \n\t)*/
+
+ParExpr:
+LParen Expr RParen
+
+LParen:
+'('
+
+RParen:
+')'
+
+Expr:
+BiOpsGroup|UnOpGroup|NulOpGroup
+
+NulOpGroup:
+ParExpr|Number
+
+Number:
+Float|Int
+
+Int:
+/(0-9)+/
+
+Float:
+/(0-9)+\.(0-9)*/
+
+UnOpGroup:
+UnOp WS NulOpGroup
+
+UnOp:
+UnPlus|UnMinus
+
+UnPlus:
+'+'
+
+UnMinus:
+'-'
+
+BiOpsGroup:
+ParExpr|UnOpGroup|NulOpGroup WS BiOp WS Expr
+
+BiOp:
+BiPlus|BiMinus
+
+BiPlus:
+'+'
+
+BiMinus:
+'-'
